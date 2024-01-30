@@ -1,0 +1,760 @@
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+body {
+    font-weight: lighter;
+    background-color: #ededed;
+}
+
+.main-object {
+    font-family: calibri;
+    background-color: #ededed;
+    width: 85vw;
+    height: 38vw;
+    padding: 4%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+}
+
+.main-object .topbar {
+    background-color: white;
+    width: 93vw;
+    height: 3vw;
+    position: fixed;
+    top: 4%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+}
+
+.main-object .topbar .mador-name {
+    font-size: 2vw;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .topbar .login-btn {
+    background-color: mediumpurple;
+    border: None;
+    width: 7vw;
+    height: 2vw;
+    position: fixed;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.main-object .topbar .login-btn a {
+    font-family: calibri;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.main-object .topbar .login-btn:hover {
+    background-color: lightskyblue;
+}
+
+.main-object .topbar .profile-pic {
+    width: 2vw;
+    height: 2vw;
+    position: fixed;
+    top: 15%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 2px solid black;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.main-object .topbar .profile-pic:hover {
+    -webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.main-object .search .search-box {
+    font-family: calibri;
+    font-size: 1vw;
+    text-align: right;
+    padding: 1%;
+    padding-right: 4%;
+    background-color: #ededed;
+    width: 30vw;
+    height: 2.5vw;
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.main-object .search .search-box:hover {
+    border: 1px solid black;
+}
+
+.main-object .search .glass-img {
+    padding: 0.5%;
+    width: 1.1vw;
+    height: 1.1vw;
+    position: fixed;
+    top: 4.2%;
+    left: 64%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+}
+
+.main-object .search .glass-img:hover {
+    background-color: white;
+}
+
+.main-object .search .results {
+    position: absolute;
+    top: 6.8%;
+    left: 34%;
+    width: 30vw;
+    background-color: #ededed;
+    border-radius: 40px;
+    box-shadow: 0 2px 40x rgba(0, 0, 0, 0.1);
+}
+
+.main-object .search ul {
+    list-style: None;
+    padding: 0;
+    margin: 15px;
+    
+}
+
+.main-object .search ul li {
+    font-family: calibri;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+.main-object .search li:hover {
+    background-color: lightskyblue;
+}
+
+.main-object .friends-tab {
+    overflow: hidden;
+    background-color: white;
+    width: 16vw;
+    height: 41vw;
+    position: fixed;
+    top: 54%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main-object .friends-tab:hover {
+    overflow: auto;
+}
+
+.main-object .friends-tab .mador-label {
+    font-size: 2vw;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .friends-tab .member {
+    margin-bottom: 5%;
+    width: 16vw;
+    height: 3vw;
+    position: relative;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+.main-object .friends-tab .member .profile-pic-list {
+    width: 2.5vw;
+    height: 2.5vw;
+    position: relative;
+    top: 45%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.main-object .friends-tab .member .connected-flag {
+    width: 1vw;
+    height: 1vw;
+    position: fixed;
+    top: 85%;
+    left: 78%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.main-object .friends-tab .member .member-name {
+    font-size: 1.5vw;
+    margin-left: auto;
+    text-align: right;
+    margin-right: 30%;
+}
+
+.main-object .self-tab {
+    background-color: white;
+    width: 16vw;
+    height: 41vw;
+    position: fixed;
+    top: 54%;
+    left: 91%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+}
+
+.main-object .self-tab .self {
+    width: 16vw;
+    height: 4vw;
+    position: relative;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 30%;
+}
+
+.main-object .self-tab .self .profile-pic-list {
+    width: 2.5vw;
+    height: 2.5vw;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.main-object .self-tab .self .member-name {
+    font-size: 1.4vw;
+    position: fixed;
+    top: -5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .self-tab .self .member-role {
+    position: fixed;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .self-tab .main-buttons .navigation-btns {
+    width: 100%;
+    height: 8%;
+    position: relative;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.main-object .self-tab .main-buttons .navigation-btns:hover {
+    background-color: lightskyblue;
+}
+
+.main-object .self-tab .main-buttons .navigation-btns .navigation-text {
+    font-size: 1.8vw;
+    margin-left: auto;
+    text-align: right;
+    margin-right: 25%;
+}
+
+.main-object .self-tab .main-buttons .navigation-btns .navigation-img {
+    display: flex;
+    width: 1.5vw;
+    height: 1.5vw;
+    position: fixed;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .self-tab .main-buttons .navigation-btns .navigation-text a {
+    font-family: calibri;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.main-object .main-feed {
+    background-color: white;
+    width: 57.5vw;
+    height: 41vw;
+    position: fixed;
+    top: 54%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main-object .main-feed .change-btn {
+    background-color: mediumpurple;
+    color: white;
+    font-family: calibri;
+    font-weight: bold;
+    border: None;
+    width: 7vw;
+    height: 2vw;
+    position: fixed;
+    top: 84%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.main-object .main-feed .change-btn:hover {
+    background-color: lightskyblue;
+}
+
+.main-object .main-feed .calender {
+    background-color: #ededed;
+    width: 40vw;
+    height: 30vw;
+    border-radius: 40px;
+    font-family: calibri;
+    padding: 2%;
+}
+
+.main-object .main-feed .calender header {
+    display: flex;
+    align-items: center;
+    padding: 2.5% 3% 1%;
+    justify-content:  space-between;
+}
+
+.main-object .main-feed .calender header .current-date {
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.main-object .main-feed .calender header .icons .material-symbols-rounded {
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 2vw;
+}
+
+.main-object .main-feed .calender header .icons .material-symbols-rounded:hover {
+    background-color: white;
+}
+
+.main-object .main-feed .calender .main-calender ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.main-object .main-feed .calender .main-calender ul li {
+    width: calc(100% / 7); 
+    position: relative;
+}
+
+.main-object .main-feed .calender .main-calender .weeks li {
+    font-weight: bold;
+}
+
+.main-object .main-feed .calender .main-calender .days {
+    margin-bottom: 5%;
+}
+
+.main-object .main-feed .calender .main-calender .days li {
+    margin-top:  5%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.main-object .main-feed .calender .main-calender .days li::before {
+    content: "";
+    width: 2.5vw;
+    height: 2.5vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.main-object .main-feed .calender .main-calender .days li:hover::before {
+    background: white;
+}
+
+.main-object .main-feed .calender .main-calender .days .inactive {
+    color: darkgray;
+}
+
+.main-object .main-feed .calender .main-calender .days .active::before {
+    background-color: mediumpurple;
+}
+
+.main-object .main-feed .calender .main-calender .days .active {
+    color: white;
+}
+
+.main-object .main-feed .mish {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .main-feed .posts {
+    position: fixed;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .main-feed .posts .sum-post {
+    width: 100vw;
+    height: 5vw;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+
+.main-object .main-feed .posts .sum-post .profile-pic-list {
+    width: 2.5vw;
+    height: 2.5vw;
+    align-items: center;
+    position: fixed;
+    top: 19%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.main-object .main-feed .posts .sum-post .melel {
+    background-color: #f1f1f1;
+    width: 40vw;
+    height: 2vw;
+    text-align: right;
+    position: fixed;
+    top: 0%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid black;
+    padding-right: 0.5%;
+}
+
+.main-object .main-feed .posts .sum-post .open {
+    color: white;
+    font-family: calibri;
+    font-weight: bold;
+    font-size: 1vw;
+    width: 8vw;
+    height: 1.5vw;
+    background-color: mediumpurple;
+    position: fixed;
+    top: 19%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.main-object .main-feed .posts .sum-post .open:hover {
+    background-color: lightskyblue;
+}
+
+.post-screen {
+    background-color: #ededed;
+    width: 77%;
+    height: 77%;
+    padding: 3.5%;
+    border-radius: 40px;
+
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    font-family: calibri;
+    text-align: right;
+    font-weight: bold;
+    
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.post-screen .close-btn {
+    position: fixed;
+    top: 5%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.post-screen .right-side {
+    width: 35vw;
+    height: 45vw;
+    position: relative;
+    top: 50%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+}
+
+.post-screen .right-side .profile-pic {
+    width: 2vw;
+    height: 2vw;
+    position: fixed;
+    top: 11.9%;
+    left: 87%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.post-screen .right-side .name {
+    width: 20vw;
+    text-align: right;
+    position: fixed;
+    top: 9%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .date {
+    width: 20vw;
+    text-align: right;
+    position: fixed;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .id {
+    width: 20vw;
+    text-align: right;
+    position: fixed;
+    top: 14%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .melel {
+    width: 20vw;
+    text-align: right;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: auto;
+}
+
+.post-screen .right-side .like-btn {
+    color: white;
+    font-family: calibri;
+    font-weight: bold;
+    font-size: 1vw;
+    width: 12vw;
+    height: 1.5vw;
+    background-color: mediumpurple;
+    position: fixed;
+    top: 55%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.post-screen .right-side .like-btn:hover {
+       background-color: lightskyblue;
+}
+
+.post-screen .right-side .comment-btn {
+    color: white;
+    font-family: calibri;
+    font-weight: bold;
+    font-size: 1vw;
+    width: 12vw;
+    height: 1.5vw;
+    background-color: mediumpurple;
+    position: fixed;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: None;
+    cursor: pointer;
+}
+
+.post-screen .right-side .comment-btn:hover {
+       background-color: lightskyblue;
+}
+
+.post-screen .right-side .like .like-icon {
+    width: 5%;
+    height: 4%;
+    position: fixed;
+    top: 49.7%;
+    left: 83%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .like .like-amount {
+    font-size: 1vw;
+    position: fixed;
+    top: 46%;
+    left: 76%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .comment .comment-icon {
+    width: 4%;
+    height: 4%;
+    position: fixed;
+    top: 50%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .comment .comment-amount {
+    font-size: 1vw;
+    position: fixed;
+    top: 46%;
+    left: 36%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .comment-side {
+    width: 35vw;
+    height: 18vw;
+    position: relative;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.post-screen .right-side .comment-side:hover {
+    overflow-y: auto;
+}
+
+.post-screen .right-side .comment-side .profile-pic {
+    width: 2vw;
+    height: 2vw;
+    position: fixed;
+    top: 11.9%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.post-screen .right-side .comment-side .comment-input {
+    text-align: right;
+    font-family: calibri;
+    width: 70%;
+    height: 15%;
+    position: fixed;
+    top: 13%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    resize: none;
+}
+
+.post-screen .right-side .comment-side .comment-input:hover {
+    border: 1px solid black;
+}
+
+.post-screen .right-side .comment-side .other-comments {
+    width: 35vw;
+    height: 13vw;
+    position: fixed;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.post-screen .right-side .comment-side .other-comments .some-comment {
+    position: relative;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.post-screen .right-side .comment-side .other-comments .some-comment .profile-pic {
+    width: 2vw;
+    height: 2vw;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    border: 1px solid black;
+}
+
+.post-screen .right-side .comment-side .other-comments .some-comment .comment {
+    margin-left: auto;
+    text-align: right;
+    margin-right: 15%;
+}
+
+.post-screen .post-photo {
+    width: 30vw;
+    height: 30vw;
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}

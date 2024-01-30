@@ -1,0 +1,157 @@
+body {
+    font-weight: lighter;
+    background-color: mediumpurple;
+}
+
+.main-object {
+    background-color: white;
+    width: 45vw;
+    height: 30vw;
+    padding: 4%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+}
+
+.main-object .register-label {
+    font-size: 3vw;
+    font-family: calibri;
+    position: fixed;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .input-box1 {
+    background-color: lightgray;
+    text-align: right;
+    font-size: 1vw;
+    padding: 2%;
+    width: 40%;
+    height: 10%;
+    border: None;
+    border-radius: 40px;
+    position: fixed;
+    top: 30%;
+    left: 72%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .input-box1:hover {
+    border: 1px solid black;
+}
+
+.main-object .input-box2 {
+    background-color: lightgray;
+    text-align: right;
+    font-size: 1vw;
+    padding: 2%;
+    width: 40%;
+    height: 10%;
+    border: None;
+    border-radius: 40px;
+    position: fixed;
+    top: 45%;
+    left: 72%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .input-box2:hover {
+    border: 1px solid black;
+}
+
+.main-object .input-box3 {
+    background-color: lightgray;
+    text-align: right;
+    font-size: 1vw;
+    padding: 2%;
+    width: 40%;
+    height: 10%;
+    border: None;
+    border-radius: 40px;
+    position: fixed;
+    top: 30%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .input-box3:hover {
+    border: 1px solid black;
+}
+
+.main-object .input-box4 {
+    background-color: lightgray;
+    text-align: right;
+    font-size: 1vw;
+    padding: 2%;
+    width: 40%;
+    height: 10%;
+    border: None;
+    border-radius: 40px;
+    position: fixed;
+    top: 45%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .input-box4:hover {
+    border: 1px solid black;
+}
+
+.main-object .date-text {
+    font-family: calibri;
+    font-size: 1.1vw;
+    position: fixed;
+    top: 55%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .release-date {
+    position: fixed;
+    top: 58.5%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .btn {
+    border-radius: 40px;
+    background-color: springgreen;
+    font-size: 1vw;
+    color: white;
+    border: None;
+    width: 40%;
+    height: 10%;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-object .btn:hover {
+    background-color: grey;
+}
+
+.main-object .new-link {
+    font-size: 0.8vw;
+    color: black;
+    border: None;
+    position: fixed;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: calibri;
+}
+
+.main-object .new-link:hover {
+    color: springgreen;
+}
+
+.main-object .sayarot-logo {
+    position: fixed;
+    top: 50%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+}

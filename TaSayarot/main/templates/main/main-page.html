@@ -1,0 +1,240 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Login form">
+        <meta name="author" content="Assaf Ezon">
+        <title>מדור סיירות</title>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/main-page.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/icons/ta-sayarot.ico' %}">
+    </head>
+    <body>
+        <dialog class="upload-screen" id="upload-screen">
+            <div class="close-btn" onclick="closeUploadPopup()">&times;</div>
+            <div class="elements">
+                <h1 class="title">:העלאה חדשה</h1>
+                <h2 class="second-title">שם המפרסם: {{ name }}</h2>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="melel">:מלל</label><br><br>
+                    <textarea class="melel-input" id="melel" name="melel" placeholder="מלל" dir="rtl" autocomplete="off"></textarea><br><br><br>
+
+                    <input type="file" name="file" id="post-input" class="post-something" accept="image/*,video/*" required>
+                    <label class="post-something" for="post-input">העלה תמונה/וידאו</label>
+                    <button class="upload-btn" type="submit" name="upload" value="post">העלה פוסט</button>
+                </form>
+
+            </div>
+        </dialog>
+        
+        <dialog class="post-screen" id="post-screen">
+            <div class="post-photo" id="post-photo">
+
+            </div>
+
+            <div class="right-side">
+                <div class="close-btn" onclick="closePostPopup()">&times;</div>
+
+                <img src="" class="profile-pic" id="profile-pic">
+                <h2 class="name" id="name"></h2>
+                <h4 class="date" id="date"></h4>
+                <h4 class="id" id="id"></h4>
+                <p class="melel" id="text"></p>
+                
+                <div class="like">
+                    <img src="{% static 'assets/icons/like.png' %}" class="like-icon">
+                    <h5 class="like-amount" id="like_amount"></h5>
+                </div>
+
+                <button class="like-btn" id="like-btn" name="submit-like" value="" onclick="like()">לייק</button>
+                <form method="POST" class="comment-side">
+                    {% csrf_token %}
+                    <button class="comment-btn" id="comment-btn" name="submit-comment" value="" type="submit">תגובה</button>
+
+                     <div>
+                        <img src="{{ image }}" class="profile-pic">
+                        <textarea class="comment-input" id="comment" name="comment" placeholder="תגובה חדשה" dir="rtl" autocomplete="off"></textarea>
+
+                         <div class="other-comments" id="other-comments">
+
+                         </div>
+                     </div>
+                </form>
+            </div>
+        </dialog>
+        
+        <div class="main-object" id="main-object">         
+            <div class="topbar">
+                <a1 class="mador-name">מדור תכנון סיירות ולחימה</a1>
+                <a href="{% url 'account' %}"><img src="{{ image }}" alt="profile-pic" class="profile-pic"></a>
+            </div>
+            
+            <div class="friends-tab"> 
+                <h3 class="mador-label">:המדור</h3>
+
+                {% for username, member_image in online.items %}
+                    <div class="member">
+                        <img src="{{ member_image }}" alt="profile-pic" class="profile-pic-list">
+                        <span class="connected-flag" style="background-color: lawngreen"></span>
+                        <h4 class="member-name">{{ username }}</h4>
+                    </div>
+                {% endfor %}
+                {% for username, member_image in offline.items %}
+                    <div class="member">
+                        <img src="{{ member_image }}" alt="profile-pic" class="profile-pic-list">
+                        <span class="connected-flag" style="background-color: #D0D0D0"></span>
+                        <h4 class="member-name">{{ username }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+                     
+            <div class="self-tab">
+                <div class="self">
+                    <img src="{{ image }}" alt="profile-pic" class="profile-pic-list">
+                    <h4 class="member-name">{{name}}</h4>
+                    <h5 class="member-role">{{role}}</h5>
+                </div>
+                
+                <div class="main-buttons">
+                    <a href="{% url 'home' %}"  style="color: mediumpurple; text-decoration: none;">
+                        <div class="navigation-btns" style="border: 1px solid black; background-color: #ededed; box-shadow: 3px 3px;">
+                            <img src="{% static 'assets/icons/home.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">בית</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'calender' %}" style="color: black; text-decoration: none;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/calender.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">לוח שנה</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'forum' %}" style="color: black; text-decoration: none;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/forum.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">פורום תאים</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'admin' %}" style="color: black; text-decoration: none;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/empty.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">דף מנהל</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="main-feed">
+                <button class="open-upload-btn" onclick="openUploadPopup()">העלאה חדשה</button>
+
+                {% for post in posts %}
+                <div class="post">
+                    <img src="{{ post.profile_photo }}" class="writer_photo">
+                    <h4 class="writer">{{ post.name }}</h4>
+                    <button class="open" onclick=
+                            "openPostPopup('{{ post.name }}', '{{ post.date }}', '{{ post.post_num }}', '{{ post.melel }}', '{{ post.likes }}', '{{ post.file }}', '{{ post.profile_photo }}', '{{ post.type }}', JSON.parse('{{ post.comments|escapejs }}'))">
+                        הפוסט המלא
+                    </button>
+                    {% if post.type == "mp4" %}
+                    <div class="content">
+                        <video controls style="max-width: 100%; height: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%;" src="{{ post.file }}">
+                            <source type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    {% else %}
+                    <div class="content">
+                        <img style="max-width: 100%; height: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 100%; max-height: 100%;" src="{{ post.file }}">
+                    </div>
+                    {% endif %}
+                </div><hr style="border: 1px solid black;">
+                {% endfor %}
+                {% if not posts.has_next %}
+                    <h4 style="text-align: center;">End of feed</h4>
+                {% endif %}
+                <br><br><br><br><br>
+                <div class="paginator-container" style="margin-bottom: 3%;">
+                    {% if posts.has_previous %}
+                        <a href="?page=1" style="text-decoration: none; margin-right: 1%; font-size: 1.2vw; font-family: calibri; color: black;">&laquo; first</a>
+                        <a href="?page={{ posts.previous_page_number }}" style="text-decoration: none; margin-right: 1%; font-size: 1.2vw; font-family: calibri; color: black;">previous</a>
+                    {% endif %}
+                    {% if posts.has_next %}
+                        <a href="?page={{ posts.next_page_number }}" style="text-decoration: none; margin-right: 1%; font-size: 1.2vw; font-family: calibri; color: black;">next</a>
+                        <a href="?page={{ posts.paginator.num_pages }}" style="text-decoration: none; margin-right: 1%; font-size: 1.2vw; font-family: calibri; color: black;">last &raquo;</a>
+                    {% endif %}
+                    <h3>{{ posts.number }}</h3>
+                </div>
+            </div>
+            
+            <div class="search">
+                <input type="text" class="search-box" id="input-box" name="input-box" placeholder="חפש חבר מדור" dir="rtl" autocomplete="off">
+                <div class="results" id="results">
+                </div>
+                <img src="{% static 'assets/icons/serach-btn.png' %}" class="glass-img" alt="glass" onclick="selectInputImg()">
+            </div>
+        </div>
+        <script>
+            let availableKeywords = JSON.parse('{{ username_list_json|escapejs }}');
+            const resultsBox = document.querySelector(".results");
+            const inputBox = document.getElementById("input-box");
+            const searchArea = document.getElementById("results");
+
+
+            inputBox.onkeyup = function(){
+                console.log(availableKeywords)
+                let result = [];
+                let input = inputBox.value;
+
+                if (input.length){
+                    result = availableKeywords.filter((keyword) => {
+                        return keyword.includes(input);
+                    });
+
+                    display(result.sort());
+                }
+
+                else {
+                    searchArea.innerHTML = "";
+                }
+            }
+
+            function display(result){
+                let content = result.map((list) => {
+                    return "<li onclick=selectInput(this)>" + list + "</li>";
+                });
+
+                resultsBox.innerHTML = "<ul>" + content.join("") + "</ul>";
+            }
+
+            function selectInput(list){
+                window.location.href = "/" + list.innerHTML + "/"
+                inputBox.value = list.innerHTML;
+                resultsBox.innerHTML = "";
+            }
+
+            //clears forms
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+
+
+            //websocket
+            const socket = new WebSocket('ws://' + window.location.host + '/ws/likes/');
+            console.log(socket);
+
+            function like() {
+                const id = document.getElementById("id");
+                socket.send(JSON.stringify({
+                    'id': id.innerHTML,
+                }));
+
+                const likes = document.getElementById("like_amount");
+                let like_num = Number(likes.innerHTML);
+                like_num++;
+                likes.innerHTML = like_num.toString();
+            }
+        </script>
+        <script src="{% static 'js/popup/main-popup.js' %}"></script>
+    </body>
+</html>

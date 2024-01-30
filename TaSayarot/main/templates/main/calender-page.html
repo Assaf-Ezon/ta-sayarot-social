@@ -1,0 +1,226 @@
+<html>
+    <head>
+        <meta name="description" content="Login form">
+        <meta name="author" content="Assaf Ezon">
+        <title>מדור סיירות - לוח שנה</title>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/calender-page.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/icons/ta-sayarot.ico' %}">
+    </head>
+    <body>     
+        <dialog class="post-screen" id="post-screen">
+            <div class="post-photo" id="post-photo">
+
+            </div>
+
+            <div class="right-side">
+                <div class="close-btn" onclick="closePostPopup()">&times;</div>
+
+                <img src="" class="profile-pic" id="profile-pic">
+                <h2 class="name" id="name"></h2>
+                <h4 class="date" id="date"></h4>
+                <h4 class="id" id="id"></h4>
+                <p class="melel" id="text"></p>
+
+                <div class="like">
+                    <img src="{% static 'assets/icons/like.png' %}" class="like-icon">
+                    <h5 class="like-amount" id="like_amount"></h5>
+                </div>
+
+                <button class="like-btn" id="like-btn" name="submit-like" value="" onclick="like()">לייק</button>
+
+                <form method="POST" class="comment-side">
+                    {% csrf_token %}
+                    <button class="comment-btn" id="comment-btn" name="submit-comment" value="" type="submit">תגובה</button>
+
+                     <div>
+                        <img src="{{ image }}" class="profile-pic">
+                        <textarea class="comment-input" id="comment" name="comment" placeholder="תגובה חדשה" dir="rtl" autocomplete="off"></textarea>
+
+                         <div class="other-comments" id="other-comments">
+
+                         </div>
+                     </div>
+                </form>
+            </div>
+        </dialog>
+
+
+        <div class="main-object" id="main-object">         
+            <div class="topbar">
+                <a1 class="mador-name">מדור תכנון סיירות ולחימה</a1>
+                <a href="{% url 'account' %}"><img src="{{ image }}" alt="profile-pic" class="profile-pic"></a>
+            </div>
+            
+            <div class="friends-tab"> 
+                <h3 class="mador-label">:המדור</h3>
+                
+                {% for username, member_image in online.items %}
+                    <div class="member">
+                        <img src="{{ member_image }}" alt="profile-pic" class="profile-pic-list">
+                        <span class="connected-flag" style="background-color: lawngreen"></span>
+                        <h4 class="member-name">{{ username }}</h4>
+                    </div>
+                {% endfor %}
+                {% for username, member_image in offline.items %}
+                    <div class="member">
+                        <img src="{{ member_image }}" alt="profile-pic" class="profile-pic-list">
+                        <span class="connected-flag" style="background-color: #D0D0D0"></span>
+                        <h4 class="member-name">{{ username }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+                     
+            <div class="self-tab">
+                <div class="self">
+                    <img src="{{ image }}" alt="profile-pic" class="profile-pic-list">
+                    <h4 class="member-name">{{name}}</h4>
+                    <h5 class="member-role">{{role}}</h5>
+                </div>
+                
+                <div class="main-buttons">
+                    <a href="{% url 'home' %}" style="text-decoration: none; color: black;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/home.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">בית</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'calender' %}" style="color: mediumpurple; text-decoration: none;">
+                        <div class="navigation-btns" style="border: 1px solid black; background-color: #ededed; box-shadow: 3px 3px;">
+                            <img src="{% static 'assets/icons/calender.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">לוח שנה</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'forum' %}" style="color: black; text-decoration: none;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/forum.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">פורום תאים</h4>
+                        </div>
+                    </a>
+                    <a href="{% url 'admin' %}" style="color: black; text-decoration: none;">
+                        <div class="navigation-btns">
+                            <img src="{% static 'assets/icons/empty.png' %}" class="navigation-img" alt="glass">
+                            <h4 class="navigation-text">דף מנהל</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="main-feed">
+                <div class="calender">
+                    <header>
+                        <form method="POST" id="calender">
+                            {% csrf_token %}
+                            <button class="change-btn" id="change-btn" name="change-btn" value="" type="submit">עדכן תוכן</button>
+                        </form>
+                        <p class="current-date"></p>
+                        <div class="icons">
+                            <span id="prev" class="material-symbols-rounded">&larr;</span>
+                            <span id="next" class="material-symbols-rounded">&rarr;</span>
+                        </div>
+                    </header>
+                    <div class="main-calender">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days">
+
+                        </ul>
+                    </div>
+                </div> 
+                
+                <h2 class="mish" style="text-align: center;">{{ pazamim }}</h2>
+                
+                <div class="posts">
+                    {% for post in posts %}
+                    <div class="sum-post">
+                        <img src="{{ post.profile_photo }}" alt="profile-pic" class="profile-pic-list">
+                        <p class="melel">{{ post.name }}: {{ post.melel|safe }}</p>
+                        <button class="open" onclick="openPostPopup('{{ post.name }}', '{{ post.date }}', '{{ post.post_num }}', '{{ post.melel }}', '{{ post.likes }}', '{{ post.file }}', '{{ post.profile_photo }}', '{{ post.type }}', JSON.parse('{{ post.comments|escapejs }}'))">הפוסט המלא</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="search">
+                <input type="text" class="search-box" id="input-box" name="input-box" placeholder="חפש חבר מדור" dir="rtl" autocomplete="off">
+
+                <div class="results" id="results">
+                </div>
+
+                <img src="{% static 'assets/icons/serach-btn.png' %}" class="glass-img" alt="glass">
+            </div>    
+        </div>
+
+        <script>
+            let availableKeywords = JSON.parse('{{ username_list_json|escapejs }}');
+
+            const resultsBox = document.querySelector(".results");
+            const inputBox = document.getElementById("input-box");
+            const searchArea = document.getElementById("results");
+
+
+            inputBox.onkeyup = function(){
+                console.log(availableKeywords)
+                let result = [];
+                let input = inputBox.value;
+
+                if (input.length){
+                    result = availableKeywords.filter((keyword) => {
+                        return keyword.includes(input);
+                    });
+
+                    display(result.sort());
+                }
+
+                else {
+                    searchArea.innerHTML = "";
+                }
+            }
+
+            function display(result){
+                let content = result.map((list) => {
+                    return "<li onclick=selectInput(this)>" + list + "</li>";
+                });
+
+                resultsBox.innerHTML = "<ul>" + content.join("") + "</ul>";
+            }
+
+            function selectInput(list){
+                window.location.href = "/" + list.innerHTML + "/"
+                inputBox.value = list.innerHTML;
+                resultsBox.innerHTML = "";
+            }
+
+            //clears forms
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+
+            //websocket
+            const socket = new WebSocket('ws://' + window.location.host + '/ws/likes/');
+            console.log(socket);
+
+            function like() {
+                const id = document.getElementById("id");
+                socket.send(JSON.stringify({
+                    'id': id.innerHTML,
+                }));
+
+                const likes = document.getElementById("like_amount");
+                let like_num = Number(likes.innerHTML);
+                like_num++;
+                likes.innerHTML = like_num.toString();
+            }
+        </script>
+        <script src="{% static 'js/calender/calenderManager.js' %}"></script>
+        <script src="{% static 'js/popup/main-popup.js' %}"></script>
+    </body>
+</html>

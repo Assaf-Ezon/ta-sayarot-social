@@ -1,0 +1,20 @@
+{
+  "database": {
+    "HOST": "",
+    "PORT": "",
+    "USERNAME": "",
+    "PASSWORD": "",
+    "DATABASE": ""
+  },
+  "sendgrid": {
+    "API_KEY": ""
+  },
+  "admin": {
+    "NAME": "אסף איזון"
+  },
+  "general": {
+    "POSTS_IN_PAGE": 6,
+    "LOGO_URL": "",
+    "DEFAULT_URL": ""
+  }
+}

@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta name="description" content="Login form">
+        <meta name="author" content="Assaf Ezon">
+        <title>מדור סיירות - הרשמה</title>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/register-page.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/icons/ta-sayarot.ico' %}">
+    </head>
+    <body>
+        <div class="main-object">
+            <form class="main-form" method="POST">
+                {% csrf_token %}
+                <h1 class="register-label">הרשמה</h1>
+                <br><br>
+                <input type="text" class="input-box1" id="username" name="username" placeholder="שם מלא" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+                <input type="mail" class="input-box2" id="mail" name="mail" placeholder="אימייל" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+                <input type="text" class="input-box3" id="role" name="role" placeholder="תפקיד" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+                <input type="password" class="input-box4" id="pass" name="pass" placeholder="סיסמא" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+                <h4 class="date-text" id="release" name="release">:תאריך שחרור</h4>
+                <input type="date" id="release-date" name="release-date" class="release-date" min="2000-01-01" max="2099-12-31" autocomplete="off" required>
+
+                {% if failed %}
+                    <h3 style="color: red; font-family: calibri; position: fixed; top: 90%; left: 50%; transform: translate(-50%, -50%);">אנא השתמש בפרטים אחרים</h3>
+                {% endif %}
+
+                <input type="submit" class="btn" value="הרשמה">
+
+                <br><br>
+                
+                <a href="{% url 'login' %}}" class="new-link">יש כבר משתמש? הכנס כאן</a>
+            </form>
+        </div>
+
+        <script>
+            //clears forms
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
+    </body>
+</html>

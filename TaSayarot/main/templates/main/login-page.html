@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta name="description" content="Login form">
+        <meta name="author" content="Assaf Ezon">
+        <title>מדור סיירות - כניסה</title>
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/login-page.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/icons/ta-sayarot.ico' %}">
+    </head>
+    <body>
+        <div class="main-object">
+            <form class="main-form" method="POST">
+                {% csrf_token %}
+                <h4 class="login-msg">שים לב כי שימוש באתר כרוך בהתחברות</h4>
+                <h1 class="register-label">כניסה לרשומים</h1>
+                <br><br>
+                <input type="text" class="input-box1" id="username" name="username" placeholder="שם משתמש" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+                <input type="password" class="input-box2" id="pass" name="pass" placeholder="סיסמא" dir="rtl" autocomplete="off" required>
+                <br><br><br>
+
+                {% if failed %}
+                    <h3 style="color: red; font-family: calibri; position: fixed; top: 90%; left: 66%; transform: translate(-50%, -50%);">שם משתמש/סיסמא לא נכונה</h3>
+                {% endif %}
+
+                <div class="rememberme">
+                    <label for="rememberMe" class="remember-me">זכור אותי</label><input type="checkbox" class="check" id="rememberMe" name="rememberMe">
+                </div>
+
+                <input type="submit" class="btn" value="כניסה">
+                
+                <br><br>
+                
+                <a href="{% url 'signup' %}" class="new-link">צור משתמש עכשיו</a>
+            </form>
+            <img src="{% static 'assets/icons/ta-sayarot.png' %}" alt="לוגו תא סיירות" class="sayarot-logo">
+        </div>
+
+        <script>
+            //clears forms
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
+    </body>
+</html>
